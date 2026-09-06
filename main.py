@@ -39,7 +39,7 @@ def main():
                     category_split = category.split(",")
                     id_new_expense = operation_under_expense.id_number()
 
-                    new_expense = Expense(title, amount, category_split, id_new_expense )
+                    new_expense: Expense = Expense(title, amount, category_split, id_new_expense )
 
                     operation_under_expense.add_expense(new_expense)
                     print("The new expense was added successfully!")
@@ -51,12 +51,30 @@ def main():
 
             case 2:
                 logging.info("User selected: Show all expenses.")
-                total_amount = operation_under_expense.show_total_amount()
+                total_amount: float = operation_under_expense.show_total_amount()
                 if not total_amount:
                     print("Expense list is empty!")
                 else:
                     print(f"Total amount = {total_amount}")
+
+            case 3:
+                logging.info(
+                    "User selected: Show expenses for a certain category."
+                )
+                try:
+                    name_category: str = input("Your category for searching: ")
+                    result_search: list[Expense] = operation_under_expense.search_certain_category(name_category)
+                    print(f"Here all expenses which have {name_category} category:")
+                    for item in result_search:
+                        print(item)
                     
+                except Exception as error:
+                    print(f"Error: {error}")
+
+            case 4:
+                logging.info("User selected: Show total sum.")
+
+
 
 
 def initial_info():
@@ -71,7 +89,7 @@ def menu():
 1- add expense
 2- show all expenses
 3- show expense for a certain category
-4- show tottal sum
+4- show total sum
 5- exit
 """)
 
