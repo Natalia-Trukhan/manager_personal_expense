@@ -51,11 +51,9 @@ def main():
 
             case 2:
                 logging.info("User selected: Show all expenses.")
-                total_amount: float = operation_under_expense.show_total_amount()
-                if not total_amount:
-                    print("Expense list is empty!")
-                else:
-                    print(f"Total amount = {total_amount}")
+                print("All expenses:")
+                print(operation_under_expense)
+                
 
             case 3:
                 logging.info(
@@ -73,6 +71,17 @@ def main():
 
             case 4:
                 logging.info("User selected: Show total sum.")
+                total_amount: float = operation_under_expense.show_total_amount()
+                if not total_amount:
+                    print("Expense list is empty!")
+                else:
+                    print(f"Total amount = {total_amount}")
+
+            case 5:
+                logging.info("Program finished by user.")
+                print("Goodbye!")
+                break
+                
 
 
 

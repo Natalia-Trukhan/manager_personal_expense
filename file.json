@@ -9,5 +9,23 @@
             "vegetables",
             "fruits"
         ]
+    },
+    {
+        "id": 2,
+        "title": "train",
+        "amount": 2500.0,
+        "category": [
+            "transport",
+            "run to work and rest"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "python",
+        "amount": 5030.0,
+        "category": [
+            "study",
+            "programming"
+        ]
     }
 ]
