@@ -49,6 +49,15 @@ def main():
                 except Exception as error:
                     print(f"Error: {error}")
 
+            case 2:
+                logging.info("User selected: Show all expenses.")
+                total_amount = operation_under_expense.show_total_amount()
+                if not total_amount:
+                    print("Expense list is empty!")
+                else:
+                    print(f"Total amount = {total_amount}")
+                    
+
 
 def initial_info():
     print("""

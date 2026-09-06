@@ -101,6 +101,8 @@ class OperationsUnderExpense:
 
     def show_total_amount(self) -> float:
         total_amount: float = 0.0
+        if not self.list_objects:
+            raise ValueError("Expense list is empty!")
         for exp in self.list_objects:
             total_amount += exp.amount
         return total_amount
