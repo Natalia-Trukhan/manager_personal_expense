@@ -1,0 +1,13 @@
+[
+    {
+        "id": 1,
+        "title": "food",
+        "amount": 3000.0,
+        "category": [
+            "food",
+            "meat",
+            "vegetables",
+            "fruits"
+        ]
+    }
+]
