@@ -50,3 +50,62 @@ class Expense:
         if not category:
             raise ValueError("Category cannot be empty!")
         self.__category = category
+
+
+class OperationsUnderExpense:
+    def __init__(self, path_json: str = "file.json") -> None:
+        self.path_file_json: Path = Path(path_json)
+        self.list_objects: list[Expense] = self.load_from_json()
+
+    def add_expense(self, expense: Expense):
+        self.list_objects.append(expense)
+        self.add_to_json()
+
+    def add_to_json(self) -> None:
+        obj: list[dict] = [
+            {"id": item.id,
+             "title": item.title,
+             "amount": item.amount,
+             "category": list(item.category)
+             }
+            for item in self.list_objects
+        ]
+
+        with open(self.path_file_json, "w", encoding="utf-8") as file:
+            json.dump(obj, file, ensure_ascii=False, indent=4)
+
+    def load_from_json(self) -> list[Expense]:
+        if not self.path_file_json.exists():
+            return []
+
+        list_obj: list[Expense] = []
+        with open(self.path_file_json, "r", encoding="utf-8") as file:
+            load_file = json.load(file)
+        for item in load_file:
+            obj = Expense(title=item["title"], amount=item["amount"], category=item["category"], id=item["id"])
+            list_obj.append(obj)
+        return list_obj
+
+    def __str__(self) -> str:
+        if not self.list_objects:
+            return f"No expense jet!"
+        return "\n".join(str(i) for i in self.list_objects)
+
+    def search_certain_category(self, category: str) -> list[Expense]:
+        list_obj: list[Expense] = []
+        for expense in self.list_objects:
+            for cat in expense.category:
+                if cat.lower() == category.lower():
+                    list_obj.append(expense)
+        return list_obj
+
+    def show_total_amount(self) -> float:
+        total_amount: float = 0.0
+        for exp in self.list_objects:
+            total_amount += exp.amount
+        return total_amount
+
+    def id_number(self) -> int:
+        counter: int = len(self.list_objects)
+        return counter + 1
+
