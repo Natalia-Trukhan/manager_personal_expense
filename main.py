@@ -11,6 +11,7 @@ logging.basicConfig(
 
 operation_under_expense = OperationsUnderExpense()
 
+
 def main():
     logging.info("Starting the program.")
     initial_info()
@@ -19,7 +20,7 @@ def main():
             try:
                 menu()
                 selected_option: int = int(input("Your choice: "))
-                if selected_option>5 or selected_option<1:
+                if selected_option > 5 or selected_option < 1:
                     raise ValueError("Choice must be only between 1 to 5!")
                 break
 
@@ -32,7 +33,8 @@ def main():
             case 1:
                 logging.info("User is adding a new expense.")
                 try:
-                    print("You must enter the title, the amount, the category of expense.")
+                    print(
+                        "You must enter the title, the amount, the category of expense.")
                     print()
                     while True:
                         try:
@@ -48,26 +50,30 @@ def main():
                         try:
                             amount: float = float(input("Amount: "))
                             if amount <= 0:
-                                raise ValueError("Amount must be greater than zero!")
+                                raise ValueError(
+                                    "Amount must be greater than zero!")
                             break
                         except Exception as e:
-                            print(f"Error: Please enter a valid positive number for amount.")
+                            print(
+                                f"Error: Please enter a valid positive number for amount.")
                             logging.error(f"Validation error for amount: {e}")
                             continue
                     while True:
                         try:
-                            category: str = input("Category(food, transport): ")
+                            category: str = input(
+                                "Category(food, transport): ")
                             if not category:
                                 raise ValueError("Category cannot be empty!")
                             break
                         except ValueError as e:
                             print(f"Error: {e}")
-                            logging.error(f"Validation error for category: {e}")
-                            
+                            logging.error(
+                                f"Validation error for category: {e}")
                     category_split = category.split(",")
                     id_new_expense = operation_under_expense.id_number()
 
-                    new_expense: Expense = Expense(title, amount, category_split, id_new_expense )
+                    new_expense: Expense = Expense(
+                        title, amount, category_split, id_new_expense)
 
                     operation_under_expense.add_expense(new_expense)
                     print("The new expense was added successfully!")
@@ -81,7 +87,6 @@ def main():
                 logging.info("User selected: Show all expenses.")
                 print("All expenses:")
                 print(operation_under_expense)
-                
 
             case 3:
                 logging.info(
@@ -89,11 +94,13 @@ def main():
                 )
                 try:
                     name_category: str = input("Your category for searching: ")
-                    result_search: list[Expense] = operation_under_expense.search_certain_category(name_category)
-                    print(f"Here all expenses which have {name_category} category:")
+                    result_search: list[Expense] = operation_under_expense.search_certain_category(
+                        name_category)
+                    print(
+                        f"Here all expenses which have {name_category} category:")
                     for item in result_search:
                         print(item)
-                    
+
                 except Exception as error:
                     print(f"Error: {error}")
 
@@ -109,9 +116,6 @@ def main():
                 logging.info("Program finished by user.")
                 print("Goodbye!")
                 break
-                
-
-
 
 
 def initial_info():
@@ -119,6 +123,7 @@ def initial_info():
 Hello!
 Here you can commit some operations with expense:
 """)
+
 
 def menu():
     print("""
@@ -129,6 +134,7 @@ def menu():
 4- show total sum
 5- exit
 """)
+
 
 if __name__ == "__main__":
     main()

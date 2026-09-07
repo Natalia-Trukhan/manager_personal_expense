@@ -1,5 +1,7 @@
 import json
 from pathlib import Path
+
+
 class Expense:
     def __init__(self, title: str, amount: float, category: list[str], id: int) -> None:
         self.title = title
@@ -82,7 +84,8 @@ class OperationsUnderExpense:
         with open(self.path_file_json, "r", encoding="utf-8") as file:
             load_file = json.load(file)
         for item in load_file:
-            obj = Expense(title=item["title"], amount=item["amount"], category=item["category"], id=item["id"])
+            obj = Expense(title=item["title"], amount=item["amount"],
+                          category=item["category"], id=item["id"])
             list_obj.append(obj)
         return list_obj
 
@@ -110,4 +113,3 @@ class OperationsUnderExpense:
     def id_number(self) -> int:
         counter: int = len(self.list_objects)
         return counter + 1
-
