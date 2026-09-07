@@ -33,9 +33,37 @@ def main():
                 logging.info("User is adding a new expense.")
                 try:
                     print("You must enter the title, the amount, the category of expense.")
-                    title: str = input("Title: ")
-                    amount: float = float(input("Amount: "))
-                    category: str = input("Category(food, transport): ")
+                    print()
+                    while True:
+                        try:
+                            title: str = input("Title: ")
+                            if not title:
+                                raise ValueError("Title connot be empty!")
+                            break
+                        except Exception as e:
+                            logging.error(f"Validation error for title: {e}")
+                            print(f"Error: {e}")
+                            continue
+                    while True:
+                        try:
+                            amount: float = float(input("Amount: "))
+                            if amount <= 0:
+                                raise ValueError("Amount must be greater than zero!")
+                            break
+                        except Exception as e:
+                            print(f"Error: Please enter a valid positive number for amount.")
+                            logging.error(f"Validation error for amount: {e}")
+                            continue
+                    while True:
+                        try:
+                            category: str = input("Category(food, transport): ")
+                            if not category:
+                                raise ValueError("Category cannot be empty!")
+                            break
+                        except ValueError as e:
+                            print(f"Error: {e}")
+                            logging.error(f"Validation error for category: {e}")
+                            
                     category_split = category.split(",")
                     id_new_expense = operation_under_expense.id_number()
 

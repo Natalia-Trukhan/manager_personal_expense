@@ -27,5 +27,14 @@
             "study",
             "programming"
         ]
+    },
+    {
+        "id": 4,
+        "title": "bike",
+        "amount": 500.0,
+        "category": [
+            "transportation",
+            " resting"
+        ]
     }
 ]
