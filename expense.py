@@ -48,7 +48,7 @@ class Expense:
         return self.__category
 
     @category.setter
-    def category(self, category: list[str]):
+    def category(self, category: list[str]) -> None:
         if not category:
             raise ValueError("Category cannot be empty!")
         self.__category = category

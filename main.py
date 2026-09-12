@@ -12,7 +12,7 @@ logging.basicConfig(
 operation_under_expense = OperationsUnderExpense()
 
 
-def main():
+def main() -> None:
     logging.info("Starting the program.")
     initial_info()
     while True:
@@ -118,14 +118,14 @@ def main():
                 break
 
 
-def initial_info():
+def initial_info() -> None:
     print("""
 Hello!
 Here you can commit some operations with expense:
 """)
 
 
-def menu():
+def menu() -> None:
     print("""
 --- MENU ---
 1- add expense
